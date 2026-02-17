@@ -202,7 +202,7 @@ if user_input:
                 resp = requests.post(
                     API_URL,
                     json={"query": user_input},
-                    timeout=30,
+                    timeout=60,
                 )
                 if resp.status_code == 200:
                     bot_text = resp.json().get("response", "")
