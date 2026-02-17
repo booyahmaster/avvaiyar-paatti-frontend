@@ -138,7 +138,7 @@ st.divider()
 
 # ── Sidebar ───────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 💬 Ask Paatti about...")
+    st.markdown("<h3 style='color:#7A3B00; font-size:1rem; margin-bottom:0.5rem;'>💬 Ask Paatti about...</h3>", unsafe_allow_html=True)
     examples = [
         "I keep procrastinating my work",
         "My friend betrayed my trust",
