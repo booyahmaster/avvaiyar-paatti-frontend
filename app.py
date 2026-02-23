@@ -20,12 +20,16 @@ st.markdown("""
     [data-testid="stAppViewContainer"] { background-color: #FDF6EC; }
     [data-testid="stHeader"] { background-color: #FDF6EC; }
 
-    /* FIX 1: Make top-left sidebar toggle and top-right header menu buttons BLACK */
-    [data-testid="collapsedControl"] svg, 
-    [data-testid="stHeader"] button svg, 
-    [data-testid="stHeader"] a {
+    /* FIX 1: Make top-left sidebar toggle and top-right header menu buttons strictly BLACK and OPAQUE */
+    [data-testid="stHeader"] button, 
+    [data-testid="stHeader"] a, 
+    [data-testid="stHeader"] span, 
+    [data-testid="stHeader"] svg,
+    [data-testid="collapsedControl"] svg,
+    [data-testid="collapsedControl"] button {
         color: #000000 !important;
         fill: #000000 !important;
+        opacity: 1 !important;
     }
 
     /* Sidebar */
@@ -34,7 +38,7 @@ st.markdown("""
         border-right: 2px solid #E8C97A;
     }
     
-    /* REVERTED: Sidebar buttons back to original warm colors */
+    /* Sidebar buttons (Original warm colors preserved) */
     [data-testid="stSidebar"] .stButton button {
         background-color: #FDF6EC;
         color: #7A3B00;
@@ -111,7 +115,7 @@ st.markdown("""
         border: 1.5px solid #E07B00 !important;
         border-radius: 24px !important;
         color: #3D1F00 !important;
-        caret-color: #000000 !important;  /* FIX 2: Makes the typing cursor strictly BLACK */
+        caret-color: #000000 !important;  /* FIX 2: Black typing cursor preserved */
         font-size: 0.97rem !important;
     }
     [data-testid="stChatInput"] textarea:focus {
