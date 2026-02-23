@@ -20,17 +20,25 @@ st.markdown("""
     [data-testid="stAppViewContainer"] { background-color: #FDF6EC; }
     [data-testid="stHeader"] { background-color: #FDF6EC; }
 
+    /* FIX 1: Make top-left sidebar toggle and top-right header menu buttons BLACK */
+    [data-testid="collapsedControl"] svg, 
+    [data-testid="stHeader"] button svg, 
+    [data-testid="stHeader"] a {
+        color: #000000 !important;
+        fill: #000000 !important;
+    }
+
     /* Sidebar */
     [data-testid="stSidebar"] {
         background-color: #FFF3DC;
         border-right: 2px solid #E8C97A;
     }
     
-    /* MODIFIED: Sidebar Buttons changed to Black for visibility */
+    /* REVERTED: Sidebar buttons back to original warm colors */
     [data-testid="stSidebar"] .stButton button {
-        background-color: #1E1E1E; /* Dark/Black Background */
-        color: #FFFFFF; /* White Text */
-        border: 1px solid #000000;
+        background-color: #FDF6EC;
+        color: #7A3B00;
+        border: 1px solid #E07B00;
         border-radius: 8px;
         text-align: left;
         font-size: 0.85rem;
@@ -39,8 +47,8 @@ st.markdown("""
         transition: background-color 0.2s;
     }
     [data-testid="stSidebar"] .stButton button:hover {
-        background-color: #3A3A3A; /* Lighter dark grey on hover */
-        border-color: #000000;
+        background-color: #FFE4A0;
+        border-color: #C47A2B;
     }
 
     /* Header */
@@ -103,6 +111,7 @@ st.markdown("""
         border: 1.5px solid #E07B00 !important;
         border-radius: 24px !important;
         color: #3D1F00 !important;
+        caret-color: #000000 !important;  /* FIX 2: Makes the typing cursor strictly BLACK */
         font-size: 0.97rem !important;
     }
     [data-testid="stChatInput"] textarea:focus {
