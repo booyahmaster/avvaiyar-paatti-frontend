@@ -133,6 +133,33 @@ st.markdown("""
     /* Spinner */
     .stSpinner > div {
         border-top-color: #E07B00 !important;
+    /* ───────── SAFE VISIBILITY PATCH (no design changes) ───────── */
+
+/* Make typing cursor visible without changing textarea style */
+textarea, input {
+    caret-color: #7A3B00 !important;
+}
+
+/* Ensure Streamlit icons (send arrow, sidebar arrow, etc.) stay visible */
+button svg {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Prevent Streamlit auto-dimming controls */
+button {
+    opacity: 1;
+}
+
+/* Fix invisible placeholder text if theme overrides */
+textarea::placeholder {
+    opacity: 0.8;
+}
+
+/* Keep focus outline subtle but visible (no visual redesign) */
+textarea:focus, button:focus {
+    outline: none;
+}
     }
 </style>
 """, unsafe_allow_html=True)
