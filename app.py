@@ -25,10 +25,12 @@ st.markdown("""
         background-color: #FFF3DC;
         border-right: 2px solid #E8C97A;
     }
+    
+    /* MODIFIED: Sidebar Buttons changed to Black for visibility */
     [data-testid="stSidebar"] .stButton button {
-        background-color: #FDF6EC;
-        color: #7A3B00;
-        border: 1px solid #E07B00;
+        background-color: #1E1E1E; /* Dark/Black Background */
+        color: #FFFFFF; /* White Text */
+        border: 1px solid #000000;
         border-radius: 8px;
         text-align: left;
         font-size: 0.85rem;
@@ -37,8 +39,8 @@ st.markdown("""
         transition: background-color 0.2s;
     }
     [data-testid="stSidebar"] .stButton button:hover {
-        background-color: #FFE4A0;
-        border-color: #C47A2B;
+        background-color: #3A3A3A; /* Lighter dark grey on hover */
+        border-color: #000000;
     }
 
     /* Header */
