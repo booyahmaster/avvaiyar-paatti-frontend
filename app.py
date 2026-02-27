@@ -22,26 +22,86 @@ st.markdown("""
         background-color: #FDF6EC !important;
     }
 
+    /* ══════════════════════════════════════════════
+       FIX 1: BLACK BOTTOM BAR behind chat input
+       Streamlit adds a dark stBottom container
+    ══════════════════════════════════════════════ */
+    [data-testid="stBottom"],
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottom"] > div > div {
+        background-color: #FDF6EC !important;
+        border-top: 2px solid #E8C97A !important;
+    }
+    /* Catch all footer variants */
+    footer, footer > div, footer > div > div {
+        background-color: #FDF6EC !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       FIX 2: TOP-RIGHT BLACK SQUARE (Manage App)
+    ══════════════════════════════════════════════ */
+    header[data-testid="stHeader"] {
+        background-color: #FDF6EC !important;
+    }
+    /* Target the black square button specifically */
+    [data-testid="stToolbar"] {
+        background-color: transparent !important;
+    }
+    [data-testid="stToolbarActions"] button,
+    header button[data-testid="baseButton-header"],
+    header button {
+        background-color: #C47A2B !important;
+        border-radius: 8px !important;
+        border: none !important;
+        color: #FFFFFF !important;
+    }
+    header button:hover {
+        background-color: #A05A10 !important;
+    }
+    header button svg, header button path,
+    [data-testid="stToolbarActions"] svg,
+    [data-testid="stToolbarActions"] path {
+        fill: #FFFFFF !important;
+        stroke: none !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       FIX 3: BOTTOM-RIGHT FLOATING ICONS
+       (Streamlit viewer badge / running status)
+    ══════════════════════════════════════════════ */
+    [data-testid="stStatusWidget"] {
+        background-color: #C47A2B !important;
+        border-radius: 20px !important;
+        padding: 2px 6px !important;
+    }
+    [data-testid="stStatusWidget"] svg,
+    [data-testid="stStatusWidget"] path {
+        fill: #FFFFFF !important;
+        color: #FFFFFF !important;
+    }
+    /* The crown/fork icon bottom right */
+    ._profileContainer_gzau3_53,
+    [class*="profileContainer"],
+    [class*="viewerBadge"],
+    [class*="ProfilePreview"] {
+        background-color: #C47A2B !important;
+        border-radius: 50% !important;
+    }
+    [class*="profileContainer"] svg,
+    [class*="profileContainer"] path {
+        fill: #FFFFFF !important;
+    }
+
     /* ── Sidebar background ── */
     [data-testid="stSidebar"] {
         background-color: #FFF3DC !important;
         border-right: 2px solid #E8C97A;
     }
 
-    /* ── Sidebar heading text ── */
-    [data-testid="stSidebar"] h3,
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] div {
-        color: #4A2000;
-    }
-
-    /* ══════════════════════════════════════════════
-       SIDEBAR EXAMPLE BUTTONS  — HIGH CONTRAST FIX
-    ══════════════════════════════════════════════ */
+    /* ── SIDEBAR BUTTONS — HIGH CONTRAST AMBER ── */
     [data-testid="stSidebar"] .stButton > button {
-        background-color: #C47A2B !important;      /* warm amber */
-        color: #FFFFFF !important;                 /* pure white text — always visible */
+        background-color: #C47A2B !important;
+        color: #FFFFFF !important;
         border: 1.5px solid #A05A10 !important;
         border-radius: 10px !important;
         text-align: left !important;
@@ -50,42 +110,38 @@ st.markdown("""
         padding: 0.45rem 0.8rem !important;
         width: 100% !important;
         margin-bottom: 3px !important;
-        transition: background-color 0.18s, transform 0.1s !important;
         box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+        transition: background-color 0.18s, transform 0.1s !important;
     }
-
     [data-testid="stSidebar"] .stButton > button:hover {
         background-color: #A05A10 !important;
         transform: translateX(2px) !important;
-        border-color: #7A3B00 !important;
     }
-
     [data-testid="stSidebar"] .stButton > button:active {
         background-color: #7A3B00 !important;
-        transform: translateX(0px) !important;
     }
 
-    /* ══════════════════════════════════════════════
-       CLEAR CHAT BUTTON  — DISTINCT RED VARIANT
-    ══════════════════════════════════════════════ */
-    [data-testid="stSidebar"] .stButton > button[kind="secondary"],
+    /* Clear chat button — red */
     [data-testid="stSidebar"] .stButton:last-of-type > button {
-        background-color: #B03A2E !important;      /* deep red */
-        color: #FFFFFF !important;
-        border: 1.5px solid #8B2020 !important;
-        margin-top: 4px !important;
+        background-color: #8B2020 !important;
+        border-color: #6B1010 !important;
     }
     [data-testid="stSidebar"] .stButton:last-of-type > button:hover {
-        background-color: #8B2020 !important;
+        background-color: #6B1010 !important;
     }
 
-    /* ══════════════════════════════════════════════
-       HEADER ICONS — minimal, non-destructive fix
-    ══════════════════════════════════════════════ */
-    header[data-testid="stHeader"] svg,
-    header[data-testid="stHeader"] path {
-        fill: #7A3B00 !important;
-        stroke: #7A3B00 !important;
+    /* ── Sidebar collapse arrow ── */
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="collapsedControl"] button {
+        background-color: #C47A2B !important;
+        border-radius: 6px !important;
+    }
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapseButton"] path,
+    [data-testid="collapsedControl"] svg,
+    [data-testid="collapsedControl"] path {
+        fill: #FFFFFF !important;
+        stroke: #FFFFFF !important;
     }
 
     /* ── Page header ── */
@@ -112,14 +168,13 @@ st.markdown("""
         color: #8B6343;
     }
 
-    /* ── Divider ── */
     hr {
         border: none;
         border-top: 1px solid #E8C97A;
         margin: 0.5rem 0 1rem 0;
     }
 
-    /* ── Chat bubbles — assistant ── */
+    /* ── Chat bubbles ── */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
         background-color: #FFF8EE;
         border: 1px solid #F0D9A0;
@@ -127,8 +182,6 @@ st.markdown("""
         padding: 0.8rem 1rem;
         margin-bottom: 0.6rem;
     }
-
-    /* ── Chat bubbles — user ── */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
         background-color: #F0F4FF;
         border: 1px solid #C5CFF0;
@@ -137,10 +190,9 @@ st.markdown("""
         margin-bottom: 0.6rem;
     }
 
-    /* ── Chat input box ── */
+    /* ── Chat input area ── */
     [data-testid="stChatInput"] {
-        border-top: 2px solid #E8C97A;
-        background-color: #FDF6EC;
+        background-color: #FDF6EC !important;
         padding-top: 0.5rem;
     }
     [data-testid="stChatInput"] textarea {
@@ -154,6 +206,15 @@ st.markdown("""
     [data-testid="stChatInput"] textarea:focus {
         border-color: #C47A2B !important;
         box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.15) !important;
+    }
+    /* Chat send button */
+    [data-testid="stChatInput"] button {
+        background-color: #C47A2B !important;
+        border-radius: 50% !important;
+    }
+    [data-testid="stChatInput"] button svg,
+    [data-testid="stChatInput"] button path {
+        fill: #FFFFFF !important;
     }
 
     /* ── Message text ── */
@@ -226,7 +287,6 @@ if "messages" not in st.session_state:
         "content": "வணக்கம் Kanna! 🙏\n\nI am Avvaiyar Paatti. \n\nThe ancient wisdom of Aathichoodi has guided hearts for 2,000 years. What is on your mind today?"
     })
 
-# Display history
 for msg in st.session_state.messages:
     avatar = "👵" if msg["role"] == "assistant" else "🧑"
     with st.chat_message(msg["role"], avatar=avatar):
@@ -255,7 +315,6 @@ if user_input:
                 if resp.status_code == 200:
                     bot_text = resp.json().get("response", "")
 
-                    # Word-by-word streaming effect
                     displayed = ""
                     for word in bot_text.split():
                         displayed += word + " "
