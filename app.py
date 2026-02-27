@@ -20,23 +20,29 @@ st.markdown("""
     [data-testid="stAppViewContainer"] { background-color: #FDF6EC; }
     [data-testid="stHeader"] { background-color: #FDF6EC; }
 
-    /* FIX 1: Make top-left sidebar toggle and top-right header menu buttons strictly BLACK and OPAQUE */
-    [data-testid="stHeader"] button, 
-    [data-testid="stHeader"] a, 
-    [data-testid="stHeader"] span, 
-    [data-testid="stHeader"] svg,
-    [data-testid="stToolbar"] button,
-    [data-testid="stToolbar"] svg,
-    [data-testid="stActionElements"] button,
-    [data-testid="stActionElements"] svg,
-    [data-testid="collapsedControl"] svg,
-    [data-testid="collapsedControl"] button,
+    /* FIX 1: Brute-force visibility for sidebar toggle and top-right icons */
+    header[data-testid="stHeader"] button,
+    header[data-testid="stHeader"] span,
+    header[data-testid="stHeader"] svg,
+    header[data-testid="stHeader"] path,
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapseButton"] span,
     [data-testid="stSidebarCollapseButton"] svg,
-    [data-testid="stSidebarCollapseButton"] button {
+    [data-testid="stSidebarCollapseButton"] path,
+    [data-testid="collapsedControl"] button,
+    [data-testid="collapsedControl"] span,
+    [data-testid="collapsedControl"] svg,
+    [data-testid="collapsedControl"] path {
         color: #000000 !important;
         fill: #000000 !important;
         stroke: #000000 !important;
         opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Force the header container background to stay clean so it doesn't turn black */
+    header[data-testid="stHeader"] {
+        background-color: #FDF6EC !important;
     }
 
     /* Sidebar */
