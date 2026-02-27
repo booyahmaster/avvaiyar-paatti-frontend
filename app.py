@@ -21,40 +21,84 @@ st.markdown("""
     .stApp,
     [data-testid="stAppViewContainer"],
     [data-testid="stHeader"],
-    [data-testid="stHeader"] > div,
-    [data-testid="stDecoration"] {
+    [data-testid="stHeader"] > div {
         background-color: #FDF6EC !important;
     }
 
     /* ══════════════════════════════════════════════
-       TOP-LEFT SIDEBAR COLLAPSE BUTTON (the square outline)
-       This is the hamburger/arrow button to collapse sidebar
+       DARK BOTTOM BAR  ← your requested change
     ══════════════════════════════════════════════ */
-    [data-testid="stSidebarCollapseButton"],
-    [data-testid="stSidebarCollapseButton"] > div,
-    [data-testid="collapsedControl"],
-    [data-testid="collapsedControl"] > div {
-        background-color: transparent !important;
+    [data-testid="stBottom"],
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottom"] > div > div,
+    [data-testid="stBottom"] > div > div > div {
+        background-color: #1A0A00 !important;
+        border-top: 2px solid #C47A2B !important;
     }
 
-    [data-testid="stSidebarCollapseButton"] button,
+    /* Chat input inside dark bar */
+    [data-testid="stChatInput"] {
+        background-color: transparent !important;
+        padding: 0.6rem 1rem !important;
+    }
+    [data-testid="stChatInput"] textarea {
+        background-color: #2D1200 !important;
+        border: 1.5px solid #C47A2B !important;
+        border-radius: 24px !important;
+        color: #FFE8C0 !important;
+        caret-color: #FFE8C0 !important;
+        font-size: 0.97rem !important;
+    }
+    [data-testid="stChatInput"] textarea::placeholder {
+        color: #A07040 !important;
+    }
+    [data-testid="stChatInput"] textarea:focus {
+        border-color: #E07B00 !important;
+        box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.3) !important;
+    }
+    [data-testid="stChatInput"] button {
+        background-color: #C47A2B !important;
+        border-radius: 50% !important;
+        border: none !important;
+    }
+    [data-testid="stChatInput"] button svg,
+    [data-testid="stChatInput"] button path {
+        fill: #FFFFFF !important;
+        stroke: none !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       SIDEBAR COLLAPSE BUTTON (top-left white square)
+       Using maximum specificity + all possible selectors
+    ══════════════════════════════════════════════ */
+    div[data-testid="stSidebarCollapseButton"] button,
+    div[data-testid="stSidebarCollapseButton"] > div > button,
+    section[data-testid="stSidebar"] ~ div button,
+    button[title="Collapse sidebar"],
+    button[aria-label="Collapse sidebar"],
+    button[title="Open sidebar"],
+    button[aria-label="Open sidebar"],
     [data-testid="collapsedControl"] button {
         background-color: #C47A2B !important;
         border: 2px solid #A05A10 !important;
         border-radius: 8px !important;
-        color: #FFFFFF !important;
         width: 36px !important;
         height: 36px !important;
         padding: 4px !important;
+        color: #FFFFFF !important;
     }
-    [data-testid="stSidebarCollapseButton"] button:hover,
+    div[data-testid="stSidebarCollapseButton"] button:hover,
     [data-testid="collapsedControl"] button:hover {
         background-color: #A05A10 !important;
     }
-    [data-testid="stSidebarCollapseButton"] button svg,
-    [data-testid="stSidebarCollapseButton"] button path,
-    [data-testid="collapsedControl"] button svg,
-    [data-testid="collapsedControl"] button path {
+    div[data-testid="stSidebarCollapseButton"] svg,
+    div[data-testid="stSidebarCollapseButton"] path,
+    div[data-testid="stSidebarCollapseButton"] polyline,
+    div[data-testid="stSidebarCollapseButton"] line,
+    [data-testid="collapsedControl"] svg,
+    [data-testid="collapsedControl"] path,
+    [data-testid="collapsedControl"] polyline,
+    [data-testid="collapsedControl"] line {
         fill: #FFFFFF !important;
         stroke: #FFFFFF !important;
         color: #FFFFFF !important;
@@ -62,10 +106,8 @@ st.markdown("""
 
     /* ══════════════════════════════════════════════
        TOP-RIGHT HEADER BUTTONS
-       Share, Star, GitHub, Manage App square
     ══════════════════════════════════════════════ */
     header[data-testid="stHeader"] button,
-    [data-testid="stToolbar"] button,
     [data-testid="stToolbarActions"] button {
         background-color: #C47A2B !important;
         border: 1.5px solid #A05A10 !important;
@@ -73,32 +115,19 @@ st.markdown("""
         color: #FFFFFF !important;
         opacity: 1 !important;
     }
-    header[data-testid="stHeader"] button:hover,
-    [data-testid="stToolbarActions"] button:hover {
+    header[data-testid="stHeader"] button:hover {
         background-color: #A05A10 !important;
     }
     header[data-testid="stHeader"] button svg,
     header[data-testid="stHeader"] button path,
-    [data-testid="stToolbar"] button svg,
-    [data-testid="stToolbar"] button path,
-    [data-testid="stToolbarActions"] button svg,
-    [data-testid="stToolbarActions"] button path {
+    [data-testid="stToolbarActions"] svg,
+    [data-testid="stToolbarActions"] path {
         fill: #FFFFFF !important;
         stroke: none !important;
-        color: #FFFFFF !important;
-    }
-    /* "Share" text button specifically */
-    header[data-testid="stHeader"] a,
-    header[data-testid="stHeader"] a button,
-    [data-testid="stToolbarActions"] a button {
-        background-color: #C47A2B !important;
-        color: #FFFFFF !important;
-        border-radius: 8px !important;
     }
 
     /* ══════════════════════════════════════════════
        BOTTOM-RIGHT FLOATING ICONS
-       (Streamlit branding / status widget)
     ══════════════════════════════════════════════ */
     [data-testid="stStatusWidget"],
     [data-testid="stStatusWidget"] > div {
@@ -107,36 +136,19 @@ st.markdown("""
         border: 1.5px solid #A05A10 !important;
     }
     [data-testid="stStatusWidget"] svg,
-    [data-testid="stStatusWidget"] path,
-    [data-testid="stStatusWidget"] span {
+    [data-testid="stStatusWidget"] path {
         fill: #FFFFFF !important;
         color: #FFFFFF !important;
-        stroke: none !important;
     }
-    /* Crown / fork icon (viewer badge) */
-    [class*="viewerBadge"] a,
-    [class*="viewerBadge"] img,
-    ._profileContainer_gzau3_53,
+    [class*="viewerBadge"],
     [class*="profileContainer"] {
-        filter: hue-rotate(0deg) saturate(1) !important;
         background-color: #C47A2B !important;
         border-radius: 50% !important;
         border: 2px solid #A05A10 !important;
-        padding: 3px !important;
     }
-
-    /* ══════════════════════════════════════════════
-       BOTTOM BAR (black background behind chat input)
-    ══════════════════════════════════════════════ */
-    [data-testid="stBottom"],
-    [data-testid="stBottom"] > div,
-    [data-testid="stBottom"] > div > div,
-    [data-testid="stBottom"] > div > div > div {
-        background-color: #FDF6EC !important;
-        border-top: 2px solid #E8C97A !important;
-    }
-    footer, footer * {
-        background-color: #FDF6EC !important;
+    [class*="profileContainer"] svg,
+    [class*="profileContainer"] path {
+        fill: #FFFFFF !important;
     }
 
     /* ══════════════════════════════════════════════
@@ -146,8 +158,6 @@ st.markdown("""
         background-color: #FFF3DC !important;
         border-right: 2px solid #E8C97A;
     }
-
-    /* ── Sidebar example buttons ── */
     [data-testid="stSidebar"] .stButton > button {
         background-color: #8B2500 !important;
         color: #FFFFFF !important;
@@ -166,11 +176,6 @@ st.markdown("""
         background-color: #6B1A00 !important;
         transform: translateX(2px) !important;
     }
-    [data-testid="stSidebar"] .stButton > button:active {
-        background-color: #4A1000 !important;
-    }
-
-    /* Clear chat button — distinct darker red */
     [data-testid="stSidebar"] .stButton:last-of-type > button {
         background-color: #5C0F0F !important;
         border-color: #3D0808 !important;
@@ -182,7 +187,6 @@ st.markdown("""
     /* ══════════════════════════════════════════════
        CHAT BUBBLES
     ══════════════════════════════════════════════ */
-    /* Assistant bubble */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
         background-color: #FFF8EE !important;
         border: 1px solid #F0D9A0 !important;
@@ -190,8 +194,6 @@ st.markdown("""
         padding: 0.8rem 1rem !important;
         margin-bottom: 0.6rem !important;
     }
-
-    /* User bubble — override the grey with warm blue-cream */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
         background-color: #EEF2FF !important;
         border: 1px solid #C5CFF0 !important;
@@ -199,49 +201,10 @@ st.markdown("""
         padding: 0.8rem 1rem !important;
         margin-bottom: 0.6rem !important;
     }
-    /* Also target by role attribute if :has selector doesn't catch it */
-    [data-testid="stChatMessage"][data-role="user"],
-    [data-testid="stChatMessage"][aria-label*="user"] {
-        background-color: #EEF2FF !important;
-        border: 1px solid #C5CFF0 !important;
-        border-radius: 14px !important;
-    }
-
-    /* ── Message text ── */
     [data-testid="stChatMessageContent"] p {
         font-size: 1rem;
         line-height: 1.65;
         color: #2C1A00;
-    }
-
-    /* ══════════════════════════════════════════════
-       CHAT INPUT
-    ══════════════════════════════════════════════ */
-    [data-testid="stChatInput"] {
-        background-color: #FDF6EC !important;
-        padding-top: 0.5rem;
-    }
-    [data-testid="stChatInput"] textarea {
-        background-color: #FFFBF4 !important;
-        border: 1.5px solid #E07B00 !important;
-        border-radius: 24px !important;
-        color: #3D1F00 !important;
-        caret-color: #3D1F00 !important;
-        font-size: 0.97rem !important;
-    }
-    [data-testid="stChatInput"] textarea:focus {
-        border-color: #C47A2B !important;
-        box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.15) !important;
-    }
-    [data-testid="stChatInput"] button {
-        background-color: #C47A2B !important;
-        border-radius: 50% !important;
-        border: none !important;
-    }
-    [data-testid="stChatInput"] button svg,
-    [data-testid="stChatInput"] button path {
-        fill: #FFFFFF !important;
-        stroke: none !important;
     }
 
     /* ── Page header ── */
@@ -267,18 +230,47 @@ st.markdown("""
         font-size: 0.92rem;
         color: #8B6343;
     }
-
     hr {
         border: none;
         border-top: 1px solid #E8C97A;
         margin: 0.5rem 0 1rem 0;
     }
-
-    /* ── Spinner ── */
     .stSpinner > div {
         border-top-color: #E07B00 !important;
     }
 </style>
+
+<!-- JS fallback: forcibly style the sidebar collapse button by finding it in the DOM -->
+<script>
+(function() {
+    function styleCollapseBtn() {
+        // Try multiple selectors Streamlit uses across versions
+        const selectors = [
+            '[data-testid="stSidebarCollapseButton"] button',
+            '[data-testid="collapsedControl"] button',
+            'button[title*="sidebar"]',
+            'button[aria-label*="sidebar"]',
+        ];
+        selectors.forEach(sel => {
+            document.querySelectorAll(sel).forEach(btn => {
+                btn.style.setProperty('background-color', '#C47A2B', 'important');
+                btn.style.setProperty('border', '2px solid #A05A10', 'important');
+                btn.style.setProperty('border-radius', '8px', 'important');
+                btn.style.setProperty('color', '#fff', 'important');
+                // Style inner SVG strokes
+                btn.querySelectorAll('svg, path, polyline, line').forEach(el => {
+                    el.style.setProperty('fill', '#FFFFFF', 'important');
+                    el.style.setProperty('stroke', '#FFFFFF', 'important');
+                });
+            });
+        });
+    }
+    // Run on load and observe DOM changes (Streamlit re-renders)
+    styleCollapseBtn();
+    const observer = new MutationObserver(styleCollapseBtn);
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 """, unsafe_allow_html=True)
 
 # ── Backend URL ───────────────────────────────────────────────────
