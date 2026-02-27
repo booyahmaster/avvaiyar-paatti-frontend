@@ -15,94 +15,143 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
-    /* ── Base page ── */
+    /* ══════════════════════════════════════════════
+       BASE PAGE
+    ══════════════════════════════════════════════ */
     .stApp,
     [data-testid="stAppViewContainer"],
-    [data-testid="stHeader"] {
+    [data-testid="stHeader"],
+    [data-testid="stHeader"] > div,
+    [data-testid="stDecoration"] {
         background-color: #FDF6EC !important;
     }
 
     /* ══════════════════════════════════════════════
-       FIX 1: BLACK BOTTOM BAR behind chat input
-       Streamlit adds a dark stBottom container
+       TOP-LEFT SIDEBAR COLLAPSE BUTTON (the square outline)
+       This is the hamburger/arrow button to collapse sidebar
+    ══════════════════════════════════════════════ */
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapseButton"] > div,
+    [data-testid="collapsedControl"],
+    [data-testid="collapsedControl"] > div {
+        background-color: transparent !important;
+    }
+
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="collapsedControl"] button {
+        background-color: #C47A2B !important;
+        border: 2px solid #A05A10 !important;
+        border-radius: 8px !important;
+        color: #FFFFFF !important;
+        width: 36px !important;
+        height: 36px !important;
+        padding: 4px !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button:hover,
+    [data-testid="collapsedControl"] button:hover {
+        background-color: #A05A10 !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button svg,
+    [data-testid="stSidebarCollapseButton"] button path,
+    [data-testid="collapsedControl"] button svg,
+    [data-testid="collapsedControl"] button path {
+        fill: #FFFFFF !important;
+        stroke: #FFFFFF !important;
+        color: #FFFFFF !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       TOP-RIGHT HEADER BUTTONS
+       Share, Star, GitHub, Manage App square
+    ══════════════════════════════════════════════ */
+    header[data-testid="stHeader"] button,
+    [data-testid="stToolbar"] button,
+    [data-testid="stToolbarActions"] button {
+        background-color: #C47A2B !important;
+        border: 1.5px solid #A05A10 !important;
+        border-radius: 8px !important;
+        color: #FFFFFF !important;
+        opacity: 1 !important;
+    }
+    header[data-testid="stHeader"] button:hover,
+    [data-testid="stToolbarActions"] button:hover {
+        background-color: #A05A10 !important;
+    }
+    header[data-testid="stHeader"] button svg,
+    header[data-testid="stHeader"] button path,
+    [data-testid="stToolbar"] button svg,
+    [data-testid="stToolbar"] button path,
+    [data-testid="stToolbarActions"] button svg,
+    [data-testid="stToolbarActions"] button path {
+        fill: #FFFFFF !important;
+        stroke: none !important;
+        color: #FFFFFF !important;
+    }
+    /* "Share" text button specifically */
+    header[data-testid="stHeader"] a,
+    header[data-testid="stHeader"] a button,
+    [data-testid="stToolbarActions"] a button {
+        background-color: #C47A2B !important;
+        color: #FFFFFF !important;
+        border-radius: 8px !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       BOTTOM-RIGHT FLOATING ICONS
+       (Streamlit branding / status widget)
+    ══════════════════════════════════════════════ */
+    [data-testid="stStatusWidget"],
+    [data-testid="stStatusWidget"] > div {
+        background-color: #C47A2B !important;
+        border-radius: 20px !important;
+        border: 1.5px solid #A05A10 !important;
+    }
+    [data-testid="stStatusWidget"] svg,
+    [data-testid="stStatusWidget"] path,
+    [data-testid="stStatusWidget"] span {
+        fill: #FFFFFF !important;
+        color: #FFFFFF !important;
+        stroke: none !important;
+    }
+    /* Crown / fork icon (viewer badge) */
+    [class*="viewerBadge"] a,
+    [class*="viewerBadge"] img,
+    ._profileContainer_gzau3_53,
+    [class*="profileContainer"] {
+        filter: hue-rotate(0deg) saturate(1) !important;
+        background-color: #C47A2B !important;
+        border-radius: 50% !important;
+        border: 2px solid #A05A10 !important;
+        padding: 3px !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       BOTTOM BAR (black background behind chat input)
     ══════════════════════════════════════════════ */
     [data-testid="stBottom"],
     [data-testid="stBottom"] > div,
-    [data-testid="stBottom"] > div > div {
+    [data-testid="stBottom"] > div > div,
+    [data-testid="stBottom"] > div > div > div {
         background-color: #FDF6EC !important;
         border-top: 2px solid #E8C97A !important;
     }
-    /* Catch all footer variants */
-    footer, footer > div, footer > div > div {
+    footer, footer * {
         background-color: #FDF6EC !important;
     }
 
     /* ══════════════════════════════════════════════
-       FIX 2: TOP-RIGHT BLACK SQUARE (Manage App)
+       SIDEBAR
     ══════════════════════════════════════════════ */
-    header[data-testid="stHeader"] {
-        background-color: #FDF6EC !important;
-    }
-    /* Target the black square button specifically */
-    [data-testid="stToolbar"] {
-        background-color: transparent !important;
-    }
-    [data-testid="stToolbarActions"] button,
-    header button[data-testid="baseButton-header"],
-    header button {
-        background-color: #C47A2B !important;
-        border-radius: 8px !important;
-        border: none !important;
-        color: #FFFFFF !important;
-    }
-    header button:hover {
-        background-color: #A05A10 !important;
-    }
-    header button svg, header button path,
-    [data-testid="stToolbarActions"] svg,
-    [data-testid="stToolbarActions"] path {
-        fill: #FFFFFF !important;
-        stroke: none !important;
-    }
-
-    /* ══════════════════════════════════════════════
-       FIX 3: BOTTOM-RIGHT FLOATING ICONS
-       (Streamlit viewer badge / running status)
-    ══════════════════════════════════════════════ */
-    [data-testid="stStatusWidget"] {
-        background-color: #C47A2B !important;
-        border-radius: 20px !important;
-        padding: 2px 6px !important;
-    }
-    [data-testid="stStatusWidget"] svg,
-    [data-testid="stStatusWidget"] path {
-        fill: #FFFFFF !important;
-        color: #FFFFFF !important;
-    }
-    /* The crown/fork icon bottom right */
-    ._profileContainer_gzau3_53,
-    [class*="profileContainer"],
-    [class*="viewerBadge"],
-    [class*="ProfilePreview"] {
-        background-color: #C47A2B !important;
-        border-radius: 50% !important;
-    }
-    [class*="profileContainer"] svg,
-    [class*="profileContainer"] path {
-        fill: #FFFFFF !important;
-    }
-
-    /* ── Sidebar background ── */
     [data-testid="stSidebar"] {
         background-color: #FFF3DC !important;
         border-right: 2px solid #E8C97A;
     }
 
-    /* ── SIDEBAR BUTTONS — HIGH CONTRAST AMBER ── */
+    /* ── Sidebar example buttons ── */
     [data-testid="stSidebar"] .stButton > button {
-        background-color: #C47A2B !important;
+        background-color: #8B2500 !important;
         color: #FFFFFF !important;
-        border: 1.5px solid #A05A10 !important;
+        border: 1.5px solid #6B1A00 !important;
         border-radius: 10px !important;
         text-align: left !important;
         font-size: 0.85rem !important;
@@ -110,38 +159,89 @@ st.markdown("""
         padding: 0.45rem 0.8rem !important;
         width: 100% !important;
         margin-bottom: 3px !important;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
         transition: background-color 0.18s, transform 0.1s !important;
     }
     [data-testid="stSidebar"] .stButton > button:hover {
-        background-color: #A05A10 !important;
+        background-color: #6B1A00 !important;
         transform: translateX(2px) !important;
     }
     [data-testid="stSidebar"] .stButton > button:active {
-        background-color: #7A3B00 !important;
+        background-color: #4A1000 !important;
     }
 
-    /* Clear chat button — red */
+    /* Clear chat button — distinct darker red */
     [data-testid="stSidebar"] .stButton:last-of-type > button {
-        background-color: #8B2020 !important;
-        border-color: #6B1010 !important;
+        background-color: #5C0F0F !important;
+        border-color: #3D0808 !important;
     }
     [data-testid="stSidebar"] .stButton:last-of-type > button:hover {
-        background-color: #6B1010 !important;
+        background-color: #3D0808 !important;
     }
 
-    /* ── Sidebar collapse arrow ── */
-    [data-testid="stSidebarCollapseButton"] button,
-    [data-testid="collapsedControl"] button {
-        background-color: #C47A2B !important;
-        border-radius: 6px !important;
+    /* ══════════════════════════════════════════════
+       CHAT BUBBLES
+    ══════════════════════════════════════════════ */
+    /* Assistant bubble */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+        background-color: #FFF8EE !important;
+        border: 1px solid #F0D9A0 !important;
+        border-radius: 14px !important;
+        padding: 0.8rem 1rem !important;
+        margin-bottom: 0.6rem !important;
     }
-    [data-testid="stSidebarCollapseButton"] svg,
-    [data-testid="stSidebarCollapseButton"] path,
-    [data-testid="collapsedControl"] svg,
-    [data-testid="collapsedControl"] path {
+
+    /* User bubble — override the grey with warm blue-cream */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+        background-color: #EEF2FF !important;
+        border: 1px solid #C5CFF0 !important;
+        border-radius: 14px !important;
+        padding: 0.8rem 1rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    /* Also target by role attribute if :has selector doesn't catch it */
+    [data-testid="stChatMessage"][data-role="user"],
+    [data-testid="stChatMessage"][aria-label*="user"] {
+        background-color: #EEF2FF !important;
+        border: 1px solid #C5CFF0 !important;
+        border-radius: 14px !important;
+    }
+
+    /* ── Message text ── */
+    [data-testid="stChatMessageContent"] p {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: #2C1A00;
+    }
+
+    /* ══════════════════════════════════════════════
+       CHAT INPUT
+    ══════════════════════════════════════════════ */
+    [data-testid="stChatInput"] {
+        background-color: #FDF6EC !important;
+        padding-top: 0.5rem;
+    }
+    [data-testid="stChatInput"] textarea {
+        background-color: #FFFBF4 !important;
+        border: 1.5px solid #E07B00 !important;
+        border-radius: 24px !important;
+        color: #3D1F00 !important;
+        caret-color: #3D1F00 !important;
+        font-size: 0.97rem !important;
+    }
+    [data-testid="stChatInput"] textarea:focus {
+        border-color: #C47A2B !important;
+        box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.15) !important;
+    }
+    [data-testid="stChatInput"] button {
+        background-color: #C47A2B !important;
+        border-radius: 50% !important;
+        border: none !important;
+    }
+    [data-testid="stChatInput"] button svg,
+    [data-testid="stChatInput"] button path {
         fill: #FFFFFF !important;
-        stroke: #FFFFFF !important;
+        stroke: none !important;
     }
 
     /* ── Page header ── */
@@ -172,56 +272,6 @@ st.markdown("""
         border: none;
         border-top: 1px solid #E8C97A;
         margin: 0.5rem 0 1rem 0;
-    }
-
-    /* ── Chat bubbles ── */
-    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
-        background-color: #FFF8EE;
-        border: 1px solid #F0D9A0;
-        border-radius: 14px;
-        padding: 0.8rem 1rem;
-        margin-bottom: 0.6rem;
-    }
-    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
-        background-color: #F0F4FF;
-        border: 1px solid #C5CFF0;
-        border-radius: 14px;
-        padding: 0.8rem 1rem;
-        margin-bottom: 0.6rem;
-    }
-
-    /* ── Chat input area ── */
-    [data-testid="stChatInput"] {
-        background-color: #FDF6EC !important;
-        padding-top: 0.5rem;
-    }
-    [data-testid="stChatInput"] textarea {
-        background-color: #FFFBF4 !important;
-        border: 1.5px solid #E07B00 !important;
-        border-radius: 24px !important;
-        color: #3D1F00 !important;
-        caret-color: #3D1F00 !important;
-        font-size: 0.97rem !important;
-    }
-    [data-testid="stChatInput"] textarea:focus {
-        border-color: #C47A2B !important;
-        box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.15) !important;
-    }
-    /* Chat send button */
-    [data-testid="stChatInput"] button {
-        background-color: #C47A2B !important;
-        border-radius: 50% !important;
-    }
-    [data-testid="stChatInput"] button svg,
-    [data-testid="stChatInput"] button path {
-        fill: #FFFFFF !important;
-    }
-
-    /* ── Message text ── */
-    [data-testid="stChatMessageContent"] p {
-        font-size: 1rem;
-        line-height: 1.65;
-        color: #2C1A00;
     }
 
     /* ── Spinner ── */
