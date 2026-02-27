@@ -15,60 +15,80 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
-    /* Page background */
-    .stApp { background-color: #FDF6EC; }
-    [data-testid="stAppViewContainer"] { background-color: #FDF6EC; }
-    [data-testid="stHeader"] { background-color: #FDF6EC; }
-
-    /* FIX 1: Brute-force visibility for sidebar toggle and top-right icons */
-    header[data-testid="stHeader"] button,
-    header[data-testid="stHeader"] span,
-    header[data-testid="stHeader"] svg,
-    header[data-testid="stHeader"] path,
-    [data-testid="stSidebarCollapseButton"] button,
-    [data-testid="stSidebarCollapseButton"] span,
-    [data-testid="stSidebarCollapseButton"] svg,
-    [data-testid="stSidebarCollapseButton"] path,
-    [data-testid="collapsedControl"] button,
-    [data-testid="collapsedControl"] span,
-    [data-testid="collapsedControl"] svg,
-    [data-testid="collapsedControl"] path {
-        color: #000000 !important;
-        fill: #000000 !important;
-        stroke: #000000 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-
-    /* Force the header container background to stay clean so it doesn't turn black */
-    header[data-testid="stHeader"] {
+    /* ── Base page ── */
+    .stApp,
+    [data-testid="stAppViewContainer"],
+    [data-testid="stHeader"] {
         background-color: #FDF6EC !important;
     }
 
-    /* Sidebar */
+    /* ── Sidebar background ── */
     [data-testid="stSidebar"] {
-        background-color: #FFF3DC;
+        background-color: #FFF3DC !important;
         border-right: 2px solid #E8C97A;
     }
-    
-    /* Sidebar buttons (Original warm colors preserved) */
-    [data-testid="stSidebar"] .stButton button {
-        background-color: #FDF6EC;
-        color: #7A3B00;
-        border: 1px solid #E07B00;
-        border-radius: 8px;
-        text-align: left;
-        font-size: 0.85rem;
-        padding: 0.4rem 0.7rem;
-        width: 100%;
-        transition: background-color 0.2s;
-    }
-    [data-testid="stSidebar"] .stButton button:hover {
-        background-color: #FFE4A0;
-        border-color: #C47A2B;
+
+    /* ── Sidebar heading text ── */
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] div {
+        color: #4A2000;
     }
 
-    /* Header */
+    /* ══════════════════════════════════════════════
+       SIDEBAR EXAMPLE BUTTONS  — HIGH CONTRAST FIX
+    ══════════════════════════════════════════════ */
+    [data-testid="stSidebar"] .stButton > button {
+        background-color: #C47A2B !important;      /* warm amber */
+        color: #FFFFFF !important;                 /* pure white text — always visible */
+        border: 1.5px solid #A05A10 !important;
+        border-radius: 10px !important;
+        text-align: left !important;
+        font-size: 0.85rem !important;
+        font-weight: 500 !important;
+        padding: 0.45rem 0.8rem !important;
+        width: 100% !important;
+        margin-bottom: 3px !important;
+        transition: background-color 0.18s, transform 0.1s !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+    }
+
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background-color: #A05A10 !important;
+        transform: translateX(2px) !important;
+        border-color: #7A3B00 !important;
+    }
+
+    [data-testid="stSidebar"] .stButton > button:active {
+        background-color: #7A3B00 !important;
+        transform: translateX(0px) !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       CLEAR CHAT BUTTON  — DISTINCT RED VARIANT
+    ══════════════════════════════════════════════ */
+    [data-testid="stSidebar"] .stButton > button[kind="secondary"],
+    [data-testid="stSidebar"] .stButton:last-of-type > button {
+        background-color: #B03A2E !important;      /* deep red */
+        color: #FFFFFF !important;
+        border: 1.5px solid #8B2020 !important;
+        margin-top: 4px !important;
+    }
+    [data-testid="stSidebar"] .stButton:last-of-type > button:hover {
+        background-color: #8B2020 !important;
+    }
+
+    /* ══════════════════════════════════════════════
+       HEADER ICONS — minimal, non-destructive fix
+    ══════════════════════════════════════════════ */
+    header[data-testid="stHeader"] svg,
+    header[data-testid="stHeader"] path {
+        fill: #7A3B00 !important;
+        stroke: #7A3B00 !important;
+    }
+
+    /* ── Page header ── */
     .paatti-header {
         text-align: center;
         padding: 1.5rem 0 0.8rem 0;
@@ -92,14 +112,14 @@ st.markdown("""
         color: #8B6343;
     }
 
-    /* Divider */
+    /* ── Divider ── */
     hr {
         border: none;
         border-top: 1px solid #E8C97A;
         margin: 0.5rem 0 1rem 0;
     }
 
-    /* Chat messages — assistant */
+    /* ── Chat bubbles — assistant ── */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
         background-color: #FFF8EE;
         border: 1px solid #F0D9A0;
@@ -108,7 +128,7 @@ st.markdown("""
         margin-bottom: 0.6rem;
     }
 
-    /* Chat messages — user */
+    /* ── Chat bubbles — user ── */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
         background-color: #F0F4FF;
         border: 1px solid #C5CFF0;
@@ -117,7 +137,7 @@ st.markdown("""
         margin-bottom: 0.6rem;
     }
 
-    /* Chat input box */
+    /* ── Chat input box ── */
     [data-testid="stChatInput"] {
         border-top: 2px solid #E8C97A;
         background-color: #FDF6EC;
@@ -128,7 +148,7 @@ st.markdown("""
         border: 1.5px solid #E07B00 !important;
         border-radius: 24px !important;
         color: #3D1F00 !important;
-        caret-color: #000000 !important;  /* FIX 2: Black typing cursor preserved */
+        caret-color: #3D1F00 !important;
         font-size: 0.97rem !important;
     }
     [data-testid="stChatInput"] textarea:focus {
@@ -136,14 +156,14 @@ st.markdown("""
         box-shadow: 0 0 0 2px rgba(196, 122, 43, 0.15) !important;
     }
 
-    /* Message text */
+    /* ── Message text ── */
     [data-testid="stChatMessageContent"] p {
         font-size: 1rem;
         line-height: 1.65;
         color: #2C1A00;
     }
 
-    /* Spinner */
+    /* ── Spinner ── */
     .stSpinner > div {
         border-top-color: #E07B00 !important;
     }
@@ -185,7 +205,7 @@ with st.sidebar:
 
     st.divider()
     st.markdown("""
-    <div style='font-size:0.78rem; color:#8B6343; line-height:1.6;'>
+    <div style='font-size:0.78rem; color:#5A3000; line-height:1.6;'>
     <b>About</b><br>
     Avvaiyar Paatti gives life advice rooted in the 2,000-year-old Tamil text <i>Aathichoodi</i> by poet Avvaiyar.<br><br>
     <b>Stack</b><br>
