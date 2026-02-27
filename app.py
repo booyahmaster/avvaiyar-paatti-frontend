@@ -190,7 +190,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
     st.session_state.messages.append({
         "role": "assistant",
-        "content": "வணக்கம் Kanna! 🙏\n\nI am Avvaiyar Paatti. Come to me with whatever is weighing on your heart — work, relationships, self-doubt, anger, anything at all.\n\nThe ancient wisdom of Aathichoodi has guided hearts for 2,000 years. What is on your mind today?"
+        "content": "வணக்கம் Kanna! 🙏\n\nI am Avvaiyar Paatti. \n\nThe ancient wisdom of Aathichoodi has guided hearts for 2,000 years. What is on your mind today?"
     })
 
 # Display history
