@@ -25,10 +25,17 @@ st.markdown("""
     [data-testid="stHeader"] a, 
     [data-testid="stHeader"] span, 
     [data-testid="stHeader"] svg,
+    [data-testid="stToolbar"] button,
+    [data-testid="stToolbar"] svg,
+    [data-testid="stActionElements"] button,
+    [data-testid="stActionElements"] svg,
     [data-testid="collapsedControl"] svg,
-    [data-testid="collapsedControl"] button {
+    [data-testid="collapsedControl"] button,
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapseButton"] button {
         color: #000000 !important;
         fill: #000000 !important;
+        stroke: #000000 !important;
         opacity: 1 !important;
     }
 
